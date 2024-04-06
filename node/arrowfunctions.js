@@ -27,12 +27,12 @@ console.log(sum);
 
 // Arrow Function With Parameters
 
-const addTwoNumbers = (a, b) => {
+const addTwoNumbers1 = (a, b) => {
     // Code block
     return a + b;
 }
-let sum = addTwoNumbers(4, 7);
-console.log(sum);
+let sum1 = addTwoNumbers1(4, 7);
+console.log(sum1);
 
 
 // Single Line ES6 Arrow Function With Parameters
@@ -83,3 +83,52 @@ const returnMultiplesLines = () => (
     '<p>This is a multiple string!</p>'
 )
 console.log(returnMultiplesLines())
+
+
+/**
+ * ES6 features: spread operator and rest parameter syntax
+ */
+
+// No spread operator
+
+/**
+ * When you log the first  array to the console, you'll see 
+ * that when we pushed the fourth element into the 2nd array,  
+ * it was also pushed into the first array. This is because 
+ * the second array is  not actually a copy of the first, 
+ * it's a new variable which points to the same  object as 
+ * the other variable. Because of this, anything we do to the 
+ * second array will  be done to the first and vice versa. 
+ */
+
+let arr1 = [1, 2, 3];
+let arr2 = arr1;
+arr2.push(4);
+console.log("Second array:", arr2);
+console.log("First array:", arr1);
+
+// ES6 spread operator: copying an array
+
+let arr3 = [4, 5, 6];
+let arr4 = [...arr3];
+arr4.push(7);
+console.log("Third array:", arr3);
+console.log("Fourth array:", arr4);
+
+// ES6 spread operator: copying an object
+
+let obj1 = {a: 1, b: 2, c: 3};
+let obj2 = {...obj1, d: 4};
+//overwriting values
+let obj3 = {...obj1, b: 5};
+
+console.log("First Object:", obj1);
+console.log("Second Object:", obj2);
+//overwriting values
+console.log("Third Object:", obj3);
+
+// ES6 spread operator: copying only part
+// of an array/object
+
+let arr5 = [...arr1, {...obj1}, ...arr3, "x", "y", "z"];
+console.log(arr5);
