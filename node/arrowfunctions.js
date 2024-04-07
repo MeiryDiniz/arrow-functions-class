@@ -132,3 +132,131 @@ console.log("Third Object:", obj3);
 
 let arr5 = [...arr1, {...obj1}, ...arr3, "x", "y", "z"];
 console.log(arr5);
+
+
+// ...rest parameter syntax
+
+/**
+ * Rest Parameter Syntax works in the opposite  
+ * direction from the spread operator. Where 
+ * the spread operator can break an array into  
+ * its individual elements, the rest parameter 
+ * syntax combines individual elements into an 
+ * array. It can  also be used to represent the 
+ * “rest” of the values when destructuring an 
+ * array or object, which  you’ll learn how to 
+ * do in an upcoming video.
+ */
+
+// Consider a situation where you  want to add 
+// a few numbers together.
+
+// Regular function call
+
+const sumAll = (a, b, c) => a + b + c;
+let sum3 = sumAll(1, 2, 3);
+console.log("Sum:", sum3);
+
+// Now what if you wanted to sum an  arbitrary number of parameters?
+
+// Extra arguments are ignored
+
+let sum4 = sumAll(1, 2, 3, 4, 5, 6);
+console.log("Sum4;", sum4); // result is still 6
+
+// it can be done using the ...rest function
+
+const sumRest = (a, b, c, ...rest) => {
+    let sum = a + b + c;
+    for (let i of rest) {
+        sum += i;
+    }
+
+    return sum;
+}
+
+let sum6 = sumRest(1, 2, 3, 4, 5, 6);
+console.log("Sum6:", sum6);
+
+
+// Destructuring assignment
+
+/**
+ * Destructuring gives us a faster way to take an array 
+ * of items and turn those items into distinct, individual 
+ * variables. Instead of referencing each element of the  
+ * array by its index and declaring each variable individually,  
+ * we can use destructuring  to do it all on a single line of code.
+ * The same is true for unpacking - or destructuring  - the 
+ * properties and values of JavaScript objects.
+ */
+
+// Destructuring arrays
+
+// common 
+
+let ages = [30, 20, 27];
+let john = ages[0];
+let mary = ages[1];
+let joe = ages[2];
+console.log(john, mary, joe);
+
+// destructuring
+let ages1 = [30, 20, 27];
+let [jonh1, mary2, joe3] = ages1;
+console.log(jonh1, mary2, joe3);
+
+// destructuring objects
+
+let jobs = {
+    // properties
+    mike: 'designer',
+    jill: 'developer',
+    alicia: 'accountant',
+};
+let {mike, jill, alicia} = jobs;
+console.log(mike, jill, alicia);
+
+// destructuring subsets
+
+let languages = ['english', 'french', 'spanish', 'german', 'japanese'];
+let [jonhNative, jonhSecondary] = languages;
+console.log(jonhNative, jonhSecondary);
+
+// skip values using comma
+
+let [, , maryNative, marySecondary] = languages;
+console.log(maryNative, marySecondary);
+
+// objects
+
+let languages2 = {
+    firstLanguage: 'english',
+    secondLanguage: 'french',
+    thirdLanguage: 'german',
+};
+let {firstLanguage, thirdLanguage} = languages2
+console.log(firstLanguage, thirdLanguage);
+
+
+// destructuring using rest parameter syntax
+
+let fruits = ['apple', 'orange', 'banana', 'peach', 'cherry'];
+let [favorite, secondFavorite, ...others] = fruits;
+console.log(favorite);
+console.log(secondFavorite),
+console.log(others);
+
+// object
+
+let favoriteFoods = {
+    brian: 'pizza',
+    anna: 'pasta',
+    sarah: 'steak',
+    andrea: 'fish',
+};
+let {brian, anna, ...rest} = favoriteFoods;
+
+console.log(brian);
+console.log(anna);
+console.log(rest);
