@@ -163,4 +163,84 @@ console.log(applicantsList1);
 const has5yearsExp = skill => skill.yearsExperience >= 5;
 const hasStrongSkills = applicants => applicants.skills.filter(has5yearsExp).length > 0;
 const listCandidates = applicants.filter(hasStrongSkills);
-console.log(listCandidates);
+console.log(listCandidates.map(itm => [itm.name])); // you can use map() here to have just the info we want logged to the console.
+
+
+// The reduce() method:
+
+/**
+ * Reduce can be used in many useful ways,  such as grouping 
+ * objects by a specific property, flattening arrays, or 
+ * counting how many  times a value appears in an object or array.  
+ */
+
+// Reducing an array of numbers to  a single value, their total sum.
+
+const numReduce = [0, 1, 2, 3, 4];
+let sumReduce = numReduce.reduce((acc, curr) => acc + curr, 0);
+console.log(sumReduce);
+
+
+
+const teamMembers = [
+  {
+    name: 'Mia',
+    profession: 'Developer',
+    yrsExperience: 5
+  }, 
+  {
+    name: 'Gabi',
+    profession: 'Developer',
+    yrsExperience: 7
+  }, 
+   
+  {
+    name: 'Lia',
+    profession: 'Designer',
+    yrsExperience: 1
+  },
+  {
+    name: 'Paula',
+    profession: 'Designer',
+    yrsExperience: 3
+  }
+];
+
+// totaling a specific object property
+
+let totalExperience = teamMembers.reduce((acc, curr) => acc + curr.yrsExperience, 0); // always specify the inicial value, here is 0
+console.log(totalExperience);
+
+// We’re going to use reduce to group our team 
+// members by profession and find  the total 
+// experience for each profession. 
+
+// {Developer: 12, Designer: 4} <--- this is the result we want!
+
+let experienceByProfession = teamMembers.reduce((acc, curr) => { // the first set of curly braces is the boundaries of the callback function
+  // So at this point in the function, the accumulator  is an empty object and curr is the first team member in the array.
+  let key = curr.profession; // create a  property in my object for Developer
+  // Now, I need to check whether the key already exists in the object we’re 
+  // going to be accumulating into.  If it doesn’t yet exist, I’ll set it 
+  // equal to curr.yrsExperience. This means the first time  we see a new 
+  // profession, that property will be added into the accumulator and its 
+  // value  will be set to the team member’s experience. 
+  if (!acc[key]) {
+    acc[key] = curr.yrsExperience;
+  // Otherwise, if the key does already exist, it’s as  simple as 
+  // adding the current member’s experience  
+to the already existing value.
+  } else {
+    acc[key] += curr.yrsExperience;
+  }
+  return acc; //  When I’m done, all  I’ve got to do is return the accumulator.
+}, {}); // this set of of curly braces {} after the  
+// comma is our initial value, an empty object. This  
+// is what the accumulator will be on the first pass. 
+
+console.log(experienceByProfession)
+
+// if I add another team member with a different profession 
+// to the array, this will be add to the result when I ran 
+// the code again.
+
