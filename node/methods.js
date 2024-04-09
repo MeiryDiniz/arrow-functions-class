@@ -228,8 +228,7 @@ let experienceByProfession = teamMembers.reduce((acc, curr) => { // the first se
   if (!acc[key]) {
     acc[key] = curr.yrsExperience;
   // Otherwise, if the key does already exist, it’s as  simple as 
-  // adding the current member’s experience  
-to the already existing value.
+  // adding the current member’s experience to the already existing value.
   } else {
     acc[key] += curr.yrsExperience;
   }
